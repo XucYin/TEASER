@@ -78,154 +78,45 @@ class DataClass(object):
 
     def load_tb_binding(self):
         """Load TypeBuildingElement XML into binding classes."""
-        if self.path_tb.endswith("json"):
-            if os.path.isfile(self.path_tb):
-                try:
-                    with open(self.path_tb, 'r+') as f:
-                        self.element_bind = json.load(
-                            f, object_pairs_hook=collections.OrderedDict)
-                except json.decoder.JSONDecodeError:
-                    print("Your TypeElements file seems to be broken.")
-            else:
-                with open(self.path_tb, 'w') as f:
-                    self.element_bind = collections.OrderedDict()
-                    self.element_bind["version"] = "0.7"
 
-        else:
+        if os.path.isfile(self.path_tb):
             try:
-                __xml_file_tb = open(self.path_tb, 'r+')
-                version_parse = et.parse(self.path_tb)
-            except et.ParseError:
-                __xml_file_tb = open(self.path_tb, 'w')
-                version_parse = False
-            except FileNotFoundError:
-                __xml_file_tb = open(self.path_tb, 'w+')
-                version_parse = False
-
-            if version_parse is False:
-                import teaser.data.bindings.v_0_6.typeelement_bind as tb_bind
-                self.element_bind = tb_bind.TypeBuildingElements()
-            elif bool(version_parse.getroot().attrib) is False:
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_3_9.typeelement_bind as tb_bind
-                self.element_bind = tb_bind.CreateFromDocument(
-                    __xml_file_tb.read())
-            elif version_parse.getroot().attrib['version'] == "0.3.9":
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_3_9.typeelement_bind as tb_bind
-                self.element_bind = tb_bind.CreateFromDocument(
-                    __xml_file_tb.read())
-            elif version_parse.getroot().attrib['version'] == "0.4":
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_4.typeelement_bind as tb_bind
-                self.element_bind = tb_bind.CreateFromDocument(
-                    __xml_file_tb.read())
-            elif version_parse.getroot().attrib['version'] == "0.6":
-                import teaser.data.bindings.v_0_6.typeelement_bind as tb_bind
-                self.element_bind = tb_bind.CreateFromDocument(
-                    __xml_file_tb.read())
+                with open(self.path_tb, 'r+') as f:
+                    self.element_bind = json.load(
+                        f, object_pairs_hook=collections.OrderedDict)
+            except json.decoder.JSONDecodeError:
+                print("Your TypeElements file seems to be broken.")
+        else:
+            with open(self.path_tb, 'w') as f:
+                self.element_bind = collections.OrderedDict()
+                self.element_bind["version"] = "0.7"
 
     def load_uc_binding(self):
         """Load UseConditions XML into binding classes."""
-        if self.path_uc.endswith("json"):
-            if os.path.isfile(self.path_uc):
-                try:
-                    with open(self.path_uc, 'r+') as f:
-                        self.conditions_bind = json.load(
-                            f, object_pairs_hook=collections.OrderedDict)
-                except json.decoder.JSONDecodeError:
-                    print("Your UseConditions.json file seems to be broken.")
-            else:
-                with open(self.path_uc, 'w') as f:
-                    self.conditions_bind = collections.OrderedDict()
-                    self.conditions_bind["version"] = "0.7"
 
-        else:
+        if os.path.isfile(self.path_uc):
             try:
-                __xml_file_uc = open(self.path_uc, 'r+')
-                version_parse = et.parse(self.path_uc)
-            except:
-                __xml_file_uc = open(self.path_uc, 'w')
-                version_parse = False
-
-            if version_parse is False:
-                import teaser.data.bindings.v_0_6.boundaryconditions_bind \
-                    as uc_bind
-                self.conditions_bind = uc_bind.UseConditions()
-            elif bool(version_parse.getroot().attrib) is False:
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_3_9.boundaryconditions_bind \
-                    as uc_bind
-                self.conditions_bind = uc_bind.CreateFromDocument(
-                    __xml_file_uc.read())
-            elif version_parse.getroot().attrib['version'] == "0.3.9":
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_3_9.boundaryconditions_bind \
-                    as uc_bind
-                self.conditions_bind = uc_bind.CreateFromDocument(
-                    __xml_file_uc.read())
-            elif version_parse.getroot().attrib['version'] == "0.4":
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_4.boundaryconditions_bind \
-                    as uc_bind
-                self.conditions_bind = uc_bind.CreateFromDocument(
-                    __xml_file_uc.read())
-            elif version_parse.getroot().attrib['version'] == "0.6":
-                import teaser.data.bindings.v_0_6.boundaryconditions_bind \
-                    as uc_bind
-                self.conditions_bind = uc_bind.CreateFromDocument(
-                    __xml_file_uc.read())
+                with open(self.path_uc, 'r+') as f:
+                    self.conditions_bind = json.load(
+                        f, object_pairs_hook=collections.OrderedDict)
+            except json.decoder.JSONDecodeError:
+                print("Your UseConditions.json file seems to be broken.")
+        else:
+            with open(self.path_uc, 'w') as f:
+                self.conditions_bind = collections.OrderedDict()
+                self.conditions_bind["version"] = "0.7"
 
     def load_mat_binding(self):
         """Load MaterialTemplates XML into binding classes."""
-        if self.path_mat.endswith("json"):
-            if os.path.isfile(self.path_mat):
-                try:
-                    with open(self.path_mat, 'r+') as f:
-                        self.material_bind = json.load(
-                            f, object_pairs_hook=collections.OrderedDict)
-                except json.decoder.JSONDecodeError:
-                    print("Your Materials file seems to be broken.")
-            else:
-                with open(self.path_mat, 'w') as f:
-                    self.material_bind = collections.OrderedDict()
-                    self.material_bind["version"] = "0.7"
-        else:
-            try:
-                __xml_file_mat = open(self.path_mat, 'r+')
-                version_parse = et.parse(self.path_mat)
-            except:
-                __xml_file_mat = open(self.path_mat, 'w')
-                version_parse = False
 
-            if version_parse is False:
-                import teaser.data.bindings.v_0_6.material_bind as mat_bind
-                self.material_bind = mat_bind.MaterialTemplates()
-            elif bool(version_parse.getroot().attrib) is False:
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_3_9.material_bind as mat_bind
-                self.material_bind = mat_bind.CreateFromDocument(
-                    __xml_file_mat.read())
-            elif version_parse.getroot().attrib['version'] == "0.3.9":
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_3_9.material_bind as mat_bind
-                self.material_bind = mat_bind.CreateFromDocument(
-                    __xml_file_mat.read())
-            elif version_parse.getroot().attrib['version'] == "0.4":
-                warnings.warn(
-                    "You are using an old version of XML file")
-                import teaser.data.bindings.v_0_4.material_bind as mat_bind
-                self.material_bind = mat_bind.CreateFromDocument(
-                    __xml_file_mat.read())
-            elif version_parse.getroot().attrib['version'] == "0.6":
-                import teaser.data.bindings.v_0_6.material_bind as mat_bind
-                self.material_bind = mat_bind.CreateFromDocument(
-                    __xml_file_mat.read())
+        if os.path.isfile(self.path_mat):
+            try:
+                with open(self.path_mat, 'r+') as f:
+                    self.material_bind = json.load(
+                        f, object_pairs_hook=collections.OrderedDict)
+            except json.decoder.JSONDecodeError:
+                print("Your Materials file seems to be broken.")
+        else:
+            with open(self.path_mat, 'w') as f:
+                self.material_bind = collections.OrderedDict()
+                self.material_bind["version"] = "0.7"

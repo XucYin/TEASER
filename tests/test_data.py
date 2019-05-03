@@ -556,35 +556,6 @@ class Test_teaser(object):
     # # methods in Project, these tests only test if the API function works,
     # # not if it produces reliable results.
 
-    def test_load_save_project_old(self):
-        """test of load_project and save_project"""
-        import teaser.data.input.teaserxml_input as t_input_old
-        t_input_old.load_teaser_xml(
-            utilities.get_full_path(("examples/examplefiles/old.teaserXML")),
-            prj)
-        therm_zone = prj.buildings[-1].thermal_zones[0]
-        assert therm_zone.outer_walls[0].area == 40.0
-        tz_area = sum([tz.area for tz in prj.buildings[
-            -1].thermal_zones])
-        assert prj.buildings[-1].net_leased_area == tz_area
-        prj.save_project(file_name="unitTest.json", path=None)
-        prj.save_project(file_name=None, path=utilities.get_default_path())
-        prj.set_default(load_data=True)
-
-        prj.add_non_residential(
-            method='bmvbs',
-            usage='institute',
-            name="TestBuilding_institute",
-            year_of_construction=1988,
-            number_of_floors=7,
-            height_of_floors=1,
-            net_leased_area=1988,
-            with_ahu=True,
-            office_layout=0,
-            window_layout=0,
-            construction_type="heavy")
-        prj.save_project(file_name="unitTest.json", path=None)
-
     def test_load_save_project_new(self):
         """test of load_project and save_project"""
         prj.set_default(load_data=True)
@@ -602,12 +573,6 @@ class Test_teaser(object):
         assert prj.buildings[-1].name == "TestBuilding_institute"
         prj.name = "NewUnitTest"
         prj.save_project(file_name="unitTest_new.json", path=None)
-
-    def test_load_citygml(self):
-        """test of load_gml"""
-        prj.set_default()
-        prj.load_citygml(utilities.get_full_path(
-            "examples/examplefiles/CityGMLSample.gml"))
 
     def test_calc_all_buildings(self):
         """test of calc_all_buildings, no calculation verification"""
@@ -2289,60 +2254,6 @@ class Test_teaser(object):
         prj.export_ibpsa(internal_id=prj.buildings[-1].internal_id)
 
         prj.set_default(load_data="Test")
-
-    def test_v5_bindings(self):
-        """
-        Tests the old v4 project bindings
-        """
-        prj.set_default()
-        import teaser.data.input.teaserxml_input as t_input_old
-        t_input_old.load_teaser_xml(
-            os.path.join(
-                os.path.dirname(__file__),
-                'testfiles',
-                'teaser_v5.teaserXML'),
-            prj)
-
-    def test_v4_bindings(self):
-        """
-        Tests the old v4 project bindings
-        """
-        prj.set_default(load_data=True)
-        import teaser.data.input.teaserxml_input as t_input_old
-        t_input_old.load_teaser_xml(
-            os.path.join(
-                os.path.dirname(__file__),
-                'testfiles',
-                'teaser_v4.teaserXML'),
-            prj)
-        prj.data.path_tb = os.path.join(
-            os.path.dirname(__file__),
-            'testfiles',
-            'TypeBuildingElements_v4.xml')
-        prj.data.path_mat = os.path.join(
-            os.path.dirname(__file__),
-            'testfiles',
-            'MaterialTemplates_v4.xml')
-        prj.data.path_uc = os.path.join(
-            os.path.dirname(__file__),
-            'testfiles',
-            'UseConditions_v4.xml')
-        prj.data.load_tb_binding()
-        prj.data.load_uc_binding()
-        prj.data.load_mat_binding()
-
-    def test_v39_bindings(self):
-        """
-        Tests the old v39 project bindings
-        """
-        prj.set_default()
-        import teaser.data.input.teaserxml_input as t_input_old
-        t_input_old.load_teaser_xml(
-            os.path.join(
-                os.path.dirname(__file__),
-                'testfiles',
-                'teaser_v4.teaserXML'),
-            prj)
 
     def test_export_aixlib_only_iw(self):
         """

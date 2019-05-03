@@ -39,7 +39,6 @@ from teaser.logic.archetypebuildings.tabula.de.apartmentblock import \
 from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import \
     SingleFamilyDwelling
 from teaser.logic.simulation.modelicainfo import ModelicaInfo
-import teaser.data.input.citygml_input as citygml_in
 
 
 class Project(object):
@@ -880,30 +879,6 @@ class Project(object):
         """
 
         tjson_in.load_teaser_json(path, self)
-
-    def load_citygml(self, path=None):
-        """Loads buildings from a citygml file
-
-        calls the function load_gml in data.CityGML we make use of CityGML core
-        and possibly not all kinds of CityGML modelling techniques are
-        supported.
-
-        If the function of the building is given as Residential (1000) or
-        Office (1120) the importer directly converts the building to
-        archetype buildings. If not, only the citygml geometry is imported and
-        you need take care of either the material properties and zoning or you
-        may use the _convert_bldg function in citygml_input module.
-
-
-        Parameters
-        ----------
-
-        path : string
-            full path to a CityGML file
-
-        """
-
-        citygml_in.load_gml(path, self)
 
     def export_aixlib(
             self,
