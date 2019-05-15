@@ -16,6 +16,7 @@ prj = Project(True)
 
 class Test_teaser(object):
     """Unit Tests for TEASER"""
+
     global prj
 
     def test_calc_vdi_room1(self):
@@ -33,8 +34,9 @@ class Test_teaser(object):
         assert round(zone_attr.alpha_conv_inner_iw, 13) == 2.23642384105960
 
         # paremeters outer wall Typraum S
-        r_rest = zone_attr.r_rest_ow + 1 / (zone_attr.alpha_comb_outer_ow *
-                                            zone_attr.area_ow)
+        r_rest = zone_attr.r_rest_ow + 1 / (
+            zone_attr.alpha_comb_outer_ow * zone_attr.area_ow
+        )
         assert round(r_rest, 13) == 0.0427687193786
         assert round(zone_attr.r1_ow, 13) == 0.0043679129367
         assert round(zone_attr.c1_ow / 1000, 7) == 1600.8489399
@@ -58,8 +60,9 @@ class Test_teaser(object):
         assert round(zone_attr.alpha_conv_inner_iw, 13) == 2.23642384105960
 
         # parameters outer wall Typraum L
-        r_rest = zone_attr.r_rest_ow + 1 / (zone_attr.alpha_comb_outer_ow *
-                                            zone_attr.area_ow)
+        r_rest = zone_attr.r_rest_ow + 1 / (
+            zone_attr.alpha_comb_outer_ow * zone_attr.area_ow
+        )
         assert round(r_rest, 13) == 0.0431403889233
         assert round(zone_attr.r1_ow, 13) == 0.004049351608
         assert round(zone_attr.c1_ow / 1000, 7) == 47.8617641
@@ -79,8 +82,9 @@ class Test_teaser(object):
         assert round(zone_attr.c1_iw / 1000, 7) == 12391.3638631
         assert round(zone_attr.area_iw, 1) == 60.5
         assert round(zone_attr.alpha_conv_inner_iw, 13) == 2.1214876033058
-        r_rest = zone_attr.r_rest_ow + 1 / (zone_attr.alpha_comb_outer_ow *
-                                            zone_attr.area_ow)
+        r_rest = zone_attr.r_rest_ow + 1 / (
+            zone_attr.alpha_comb_outer_ow * zone_attr.area_ow
+        )
         assert round(r_rest, 13) == 0.0207059264866
         assert round(zone_attr.r1_ow, 13) == 0.0017362530106
         assert round(zone_attr.c1_ow / 1000, 7) == 5259.932231
@@ -100,7 +104,8 @@ class Test_teaser(object):
         """
         prj.set_default()
         prj.load_project(
-            utilities.get_full_path("examples/examplefiles/unitTestCalc.json"))
+            utilities.get_full_path("examples/examplefiles/unitTestCalc.json")
+        )
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
@@ -137,12 +142,14 @@ class Test_teaser(object):
         from teaser.logic.archetypebuildings.bmvbs.office import Office
 
         prj.set_default()
-        test_office = Office(parent=prj,
-                             name="TestBuilding",
-                             year_of_construction=1988,
-                             number_of_floors=3,
-                             height_of_floors=3,
-                             net_leased_area=2500)
+        test_office = Office(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+        )
 
         test_office.generate_archetype()
 
@@ -180,15 +187,17 @@ class Test_teaser(object):
         assert round(test_office.get_window_area(270), 0) == 28
 
         prj.set_default()
-        test_office = Office(parent=prj,
-                             name="TestBuilding",
-                             year_of_construction=1988,
-                             number_of_floors=3,
-                             height_of_floors=3,
-                             net_leased_area=2500,
-                             office_layout=1,
-                             window_layout=1,
-                             construction_type="light")
+        test_office = Office(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            office_layout=1,
+            window_layout=1,
+            construction_type="light",
+        )
 
         test_office.generate_archetype()
 
@@ -206,15 +215,17 @@ class Test_teaser(object):
         assert round(test_office.get_window_area(270), 0) == 26
 
         prj.set_default()
-        test_office = Office(parent=prj,
-                             name="TestBuilding",
-                             year_of_construction=1988,
-                             number_of_floors=3,
-                             height_of_floors=3,
-                             net_leased_area=2500,
-                             office_layout=2,
-                             window_layout=2,
-                             construction_type="heavy")
+        test_office = Office(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            office_layout=2,
+            window_layout=2,
+            construction_type="heavy",
+        )
 
         test_office.generate_archetype()
 
@@ -232,15 +243,17 @@ class Test_teaser(object):
         assert round(test_office.get_window_area(270), 0) == 67
 
         prj.set_default()
-        test_office = Office(parent=prj,
-                             name="TestBuilding",
-                             year_of_construction=1988,
-                             number_of_floors=3,
-                             height_of_floors=3,
-                             net_leased_area=2500,
-                             office_layout=3,
-                             window_layout=3,
-                             construction_type="light")
+        test_office = Office(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            office_layout=3,
+            window_layout=3,
+            construction_type="light",
+        )
 
         test_office.generate_archetype()
 
@@ -262,19 +275,20 @@ class Test_teaser(object):
         Verification of the type building generation of an office building.
         Values are compared with TEASER3 values.
         """
-        from teaser.logic.archetypebuildings.bmvbs.custom.institute4 import \
-            Institute4
+        from teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
 
         prj.set_default()
-        test_institute4 = Institute4(parent=prj,
-                                     name="TestBuilding",
-                                     year_of_construction=1988,
-                                     number_of_floors=3,
-                                     height_of_floors=3,
-                                     net_leased_area=2500,
-                                     office_layout=0,
-                                     window_layout=0,
-                                     construction_type="heavy")
+        test_institute4 = Institute4(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            office_layout=0,
+            window_layout=0,
+            construction_type="heavy",
+        )
 
         test_institute4.generate_archetype()
 
@@ -318,19 +332,20 @@ class Test_teaser(object):
         Verification of the type building generation of an office building.
         Values are compared with TEASER3 values.
         """
-        from teaser.logic.archetypebuildings.bmvbs.custom.institute8 import \
-            Institute8
+        from teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
 
         prj.set_default()
-        test_institute8 = Institute8(parent=prj,
-                                     name="TestBuilding",
-                                     year_of_construction=1988,
-                                     number_of_floors=3,
-                                     height_of_floors=3,
-                                     net_leased_area=2500,
-                                     office_layout=0,
-                                     window_layout=0,
-                                     construction_type="heavy")
+        test_institute8 = Institute8(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            office_layout=0,
+            window_layout=0,
+            construction_type="heavy",
+        )
 
         test_institute8.generate_archetype()
 
@@ -374,19 +389,20 @@ class Test_teaser(object):
         Verification of the type building generation of an office building.
         Values are compared with TEASER3 values.
         """
-        from teaser.logic.archetypebuildings.bmvbs.custom.institute import \
-            Institute
+        from teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
 
         prj.set_default()
-        test_institute = Institute(parent=prj,
-                                   name="TestBuilding",
-                                   year_of_construction=1988,
-                                   number_of_floors=3,
-                                   height_of_floors=3,
-                                   net_leased_area=2500,
-                                   office_layout=0,
-                                   window_layout=0,
-                                   construction_type="heavy")
+        test_institute = Institute(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            office_layout=0,
+            window_layout=0,
+            construction_type="heavy",
+        )
 
         test_institute.generate_archetype()
 
@@ -430,16 +446,19 @@ class Test_teaser(object):
         Verification of the type building generation of an office building.
         Values are compared with TEASER3 values.
         """
-        from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling \
-            import SingleFamilyDwelling
+        from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
+            SingleFamilyDwelling,
+        )
 
         prj.set_default()
-        test_residential = SingleFamilyDwelling(parent=prj,
-                                                name="TestBuilding",
-                                                year_of_construction=1988,
-                                                number_of_floors=3,
-                                                height_of_floors=3,
-                                                net_leased_area=2500)
+        test_residential = SingleFamilyDwelling(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+        )
 
         test_residential.generate_archetype()
 
@@ -467,18 +486,20 @@ class Test_teaser(object):
         assert round(test_residential.get_window_area(270), 0) == 125
 
         prj.set_default()
-        test_residential = SingleFamilyDwelling(parent=prj,
-                                                name="TestBuilding",
-                                                year_of_construction=1988,
-                                                number_of_floors=3,
-                                                height_of_floors=3,
-                                                net_leased_area=2500,
-                                                residential_layout=1,
-                                                neighbour_buildings=1,
-                                                attic=1,
-                                                dormer=1,
-                                                cellar=1,
-                                                construction_type="light")
+        test_residential = SingleFamilyDwelling(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            residential_layout=1,
+            neighbour_buildings=1,
+            attic=1,
+            dormer=1,
+            cellar=1,
+            construction_type="light",
+        )
 
         test_residential.generate_archetype()
 
@@ -496,18 +517,20 @@ class Test_teaser(object):
         assert round(test_residential.get_window_area(270), 0) == 125
 
         prj.set_default()
-        test_residential = SingleFamilyDwelling(parent=prj,
-                                                name="TestBuilding",
-                                                year_of_construction=1988,
-                                                number_of_floors=3,
-                                                height_of_floors=3,
-                                                net_leased_area=2500,
-                                                residential_layout=0,
-                                                neighbour_buildings=2,
-                                                attic=2,
-                                                dormer=0,
-                                                cellar=2,
-                                                construction_type="heavy")
+        test_residential = SingleFamilyDwelling(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            residential_layout=0,
+            neighbour_buildings=2,
+            attic=2,
+            dormer=0,
+            cellar=2,
+            construction_type="heavy",
+        )
 
         test_residential.generate_archetype()
 
@@ -525,18 +548,20 @@ class Test_teaser(object):
         assert round(test_residential.get_window_area(270), 0) == 125
 
         prj.set_default()
-        test_residential = SingleFamilyDwelling(parent=prj,
-                                                name="TestBuilding",
-                                                year_of_construction=1988,
-                                                number_of_floors=3,
-                                                height_of_floors=3,
-                                                net_leased_area=2500,
-                                                residential_layout=0,
-                                                neighbour_buildings=2,
-                                                attic=3,
-                                                dormer=0,
-                                                cellar=3,
-                                                construction_type="light")
+        test_residential = SingleFamilyDwelling(
+            parent=prj,
+            name="TestBuilding",
+            year_of_construction=1988,
+            number_of_floors=3,
+            height_of_floors=3,
+            net_leased_area=2500,
+            residential_layout=0,
+            neighbour_buildings=2,
+            attic=3,
+            dormer=0,
+            cellar=3,
+            construction_type="light",
+        )
 
         test_residential.generate_archetype()
 
@@ -559,12 +584,11 @@ class Test_teaser(object):
     def test_load_save_project_new(self):
         """test of load_project and save_project"""
         prj.set_default(load_data=True)
-        prj.load_project(
-            os.path.join(utilities.get_default_path(), "unitTest.json"))
+        prj.load_project(os.path.join(
+            utilities.get_default_path(), "unitTest.json"))
         therm_zone = prj.buildings[-1].thermal_zones[0]
         assert therm_zone.area == 318.08
-        tz_area = sum([tz.area for tz in prj.buildings[
-            -1].thermal_zones])
+        tz_area = sum([tz.area for tz in prj.buildings[-1].thermal_zones])
         for tz in prj.buildings[-1].thermal_zones:
             print(tz.name, tz.area)
         print(prj.buildings[-1].name, prj.buildings[-1].net_leased_area)
@@ -581,79 +605,78 @@ class Test_teaser(object):
         helptest.building_test2(prj)
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings(raise_errors=True)
 
     def test_retrofit_all_buildings(self):
         """test of retrofit_all_buildings, no calculation verification"""
         prj.add_residential(
-            method='iwu',
-            usage='single_family_dwelling',
+            method="iwu",
+            usage="single_family_dwelling",
             name="ResidentialBuilding",
             year_of_construction=1858,
             number_of_floors=2,
             height_of_floors=3.2,
-            net_leased_area=219)
+            net_leased_area=219,
+        )
         prj.add_residential(
-            method='tabula_de',
-            usage='single_family_house',
+            method="tabula_de",
+            usage="single_family_house",
             name="ResidentialBuilding",
             year_of_construction=1858,
             number_of_floors=2,
             height_of_floors=3.2,
-            net_leased_area=219)
+            net_leased_area=219,
+        )
         prj.retrofit_all_buildings(
-            year_of_retrofit=2015,
-            type_of_retrofit='retrofit')
+            year_of_retrofit=2015, type_of_retrofit="retrofit")
 
     def test_export_aixlib(self):
         """test of export_aixlib, no calculation verification"""
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
-        prj.export_aixlib(building_model="Test",
-                          zone_model="Test",
-                          corG="Test")
+        prj.export_aixlib(building_model="Test", zone_model="Test", corG="Test")
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.buildings.append(prj.buildings[-1])
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib(path=utilities.get_default_path())
 
@@ -662,76 +685,76 @@ class Test_teaser(object):
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
-        prj.export_ibpsa(library='AixLib')
-        prj.export_ibpsa(library='Buildings')
-        prj.export_ibpsa(library='BuildingSystems')
-        prj.export_ibpsa(library='IDEAS')
+        prj.export_ibpsa(library="AixLib")
+        prj.export_ibpsa(library="Buildings")
+        prj.export_ibpsa(library="BuildingSystems")
+        prj.export_ibpsa(library="IDEAS")
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa(internal_id=prj.buildings[-1].internal_id)
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa(path=utilities.get_default_path())
         prj.set_default()
@@ -747,8 +770,8 @@ class Test_teaser(object):
         prj.set_default(load_data=True)
 
         prj.add_non_residential(
-            method='bmvbs',
-            usage='office',
+            method="bmvbs",
+            usage="office",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -757,14 +780,15 @@ class Test_teaser(object):
             with_ahu=False,
             office_layout=0,
             window_layout=0,
-            construction_type="heavy")
+            construction_type="heavy",
+        )
 
     def test_type_bldg_institute(self):
         """test of type_bldg_institute, no calculation verification"""
 
         prj.add_non_residential(
-            method='bmvbs',
-            usage='institute',
+            method="bmvbs",
+            usage="institute",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -773,14 +797,15 @@ class Test_teaser(object):
             with_ahu=True,
             office_layout=0,
             window_layout=0,
-            construction_type="heavy")
+            construction_type="heavy",
+        )
 
     def test_type_bldg_institute4(self):
         """test of type_bldg_institute4, no calculation verification"""
 
         prj.add_non_residential(
-            method='bmvbs',
-            usage='institute4',
+            method="bmvbs",
+            usage="institute4",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -789,14 +814,15 @@ class Test_teaser(object):
             with_ahu=True,
             office_layout=0,
             window_layout=0,
-            construction_type="heavy")
+            construction_type="heavy",
+        )
 
     def test_type_bldg_institute8(self):
         """test of type_bldg_institute8, no calculation verification"""
 
         prj.add_non_residential(
-            method='bmvbs',
-            usage='institute8',
+            method="bmvbs",
+            usage="institute8",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -805,14 +831,15 @@ class Test_teaser(object):
             with_ahu=True,
             office_layout=0,
             window_layout=0,
-            construction_type="heavy")
+            construction_type="heavy",
+        )
 
     def test_type_bldg_residential(self):
         """test of type_bldg_residential, no calculation verification"""
 
         prj.add_residential(
-            method='iwu',
-            usage='single_family_dwelling',
+            method="iwu",
+            usage="single_family_dwelling",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -824,14 +851,15 @@ class Test_teaser(object):
             attic=0,
             cellar=0,
             dormer=0,
-            construction_type="heavy")
+            construction_type="heavy",
+        )
 
     def test_est_bldgs(self):
         """test of type_bldg_est, no calculation verification"""
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est1a',
+            method="urbanrenet",
+            usage="est1a",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -844,11 +872,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est1b',
+            method="urbanrenet",
+            usage="est1b",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -861,11 +890,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est2',
+            method="urbanrenet",
+            usage="est2",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -878,11 +908,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est3',
+            method="urbanrenet",
+            usage="est3",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -895,11 +926,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est4a',
+            method="urbanrenet",
+            usage="est4a",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -912,11 +944,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est4b',
+            method="urbanrenet",
+            usage="est4b",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -929,11 +962,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est5',
+            method="urbanrenet",
+            usage="est5",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -946,11 +980,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est6',
+            method="urbanrenet",
+            usage="est6",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -963,11 +998,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est7',
+            method="urbanrenet",
+            usage="est7",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -980,11 +1016,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est8a',
+            method="urbanrenet",
+            usage="est8a",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -997,11 +1034,12 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
         prj.add_residential(
-            method='urbanrenet',
-            usage='est8b',
+            method="urbanrenet",
+            usage="est8b",
             name="TestBuilding",
             year_of_construction=1988,
             number_of_floors=7,
@@ -1014,7 +1052,8 @@ class Test_teaser(object):
             cellar=0,
             dormer=0,
             construction_type="heavy",
-            number_of_apartments=1)
+            number_of_apartments=1,
+        )
 
     # methods in Building
 
@@ -1058,34 +1097,35 @@ class Test_teaser(object):
         """test of fill_outer_wall_area_dict"""
 
         prj.buildings[-1].fill_outer_area_dict()
-        outwall_dict_round = {key: round(value, 2) for key, value in
-                              prj.buildings[-1].outer_area.items()}
-        assert outwall_dict_round == {-2.0: 140,
-                                      -1.0: 140,
-                                      0.0: 2.0,
-                                      90.0: 14.0,
-                                      180.0: 10.0,
-                                      270.0: 14.0}
+        outwall_dict_round = {
+            key: round(value, 2) for key, value in prj.buildings[-1].outer_area.items()
+        }
+        assert outwall_dict_round == {
+            -2.0: 140,
+            -1.0: 140,
+            0.0: 2.0,
+            90.0: 14.0,
+            180.0: 10.0,
+            270.0: 14.0,
+        }
 
     def test_fill_window_area_dict(self):
         """test of fill_window_area_dict"""
         prj.buildings[-1].fill_window_area_dict()
-        assert prj.buildings[-1].window_area == {90.0: 1.0,
-                                                 180.0: 8.0,
-                                                 270.0: 5.0}
+        assert prj.buildings[-1].window_area == {
+            90.0: 1.0, 180.0: 8.0, 270.0: 5.0}
 
     def test_calc_building_parameter(self):
         """test of calc_building_parameter"""
         prj.set_default()
         helptest.building_test2(prj)
 
-        prj.buildings[-1].calc_building_parameter(number_of_elements=2,
-                                                  merge_windows=True,
-                                                  used_library='AixLib')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=2, merge_windows=True, used_library="AixLib"
+        )
 
         assert round(prj.buildings[-1].volume, 1) == 490.0
-        assert round(
-            prj.buildings[-1].sum_heat_load, 4) == 5023.0256
+        assert round(prj.buildings[-1].sum_heat_load, 4) == 5023.0256
 
     # methods in therm_zone
 
@@ -1093,39 +1133,46 @@ class Test_teaser(object):
         """test of calc zone parameter, no calculation verification"""
 
         prj.buildings[-1].thermal_zones[-1].calc_zone_parameters(
-            number_of_elements=2, merge_windows=False)
+            number_of_elements=2, merge_windows=False
+        )
         prj.buildings[-1].thermal_zones[-1].calc_zone_parameters(
-            number_of_elements=2, merge_windows=True)
+            number_of_elements=2, merge_windows=True
+        )
 
     def test_heat_load(self):
         """test of heating_load"""
         prj.set_default()
         helptest.building_test2(prj)
-        prj.buildings[-1].thermal_zones[
-            -1].use_conditions.infiltration_rate = 0.5
+        prj.buildings[-1].thermal_zones[-1].use_conditions.infiltration_rate = 0.5
         prj.buildings[-1].thermal_zones[-1].calc_zone_parameters(
-            number_of_elements=2,
-            merge_windows=True)
+            number_of_elements=2, merge_windows=True
+        )
         prj.buildings[-1].thermal_zones[-1].model_attr.calc_attributes()
-        assert round(
-            prj.buildings[-1].thermal_zones[-1].model_attr.heat_load,
-            4) == 6659.6256
+        assert (
+            round(prj.buildings[-1].thermal_zones[-1].model_attr.heat_load, 4)
+            == 6659.6256
+        )
 
     def test_sum_building_elements_one(self):
         """test of combine_building_elements"""
         prj.set_default()
         helptest.building_test2(prj)
 
-        from teaser.logic.buildingobjects.calculation.one_element import\
-            OneElement
+        from teaser.logic.buildingobjects.calculation.one_element import OneElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = OneElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.ground_floors + therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
@@ -1167,29 +1214,38 @@ class Test_teaser(object):
     def test_calc_chain_matrix_one(self):
         """test of calc_chain_matrix"""
 
-        from teaser.logic.buildingobjects.calculation.one_element import \
-            OneElement
+        from teaser.logic.buildingobjects.calculation.one_element import OneElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = OneElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops + \
-            therm_zone.ground_floors + therm_zone.inner_walls + \
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
             element.calc_ua_value()
 
-        omega = (2 * math.pi / 86400 / 5)
+        omega = 2 * math.pi / 86400 / 5
 
-        helplist_outer_walls = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.ground_floors + therm_zone.windows
+        helplist_outer_walls = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.windows
+        )
 
         r1_ow, c1_ow = calc_attr._calc_parallel_connection(
-            element_list=helplist_outer_walls,
-            omega=omega)
+            element_list=helplist_outer_walls, omega=omega
+        )
         assert round(r1_ow, 14) == 0.00100751548411
         assert round(c1_ow, 5) == 3648580.59312
 
@@ -1198,16 +1254,21 @@ class Test_teaser(object):
         prj.set_default()
         helptest.building_test2(prj)
 
-        from teaser.logic.buildingobjects.calculation.two_element import\
-            TwoElement
+        from teaser.logic.buildingobjects.calculation.two_element import TwoElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = TwoElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.ground_floors + therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
@@ -1260,40 +1321,50 @@ class Test_teaser(object):
 
     def test_calc_chain_matrix_two(self):
         """test of calc_chain_matrix"""
-        from teaser.logic.buildingobjects.calculation.two_element import \
-            TwoElement
+        from teaser.logic.buildingobjects.calculation.two_element import TwoElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = TwoElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops + \
-            therm_zone.ground_floors + therm_zone.inner_walls + \
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
             element.calc_ua_value()
 
-        omega = (2 * math.pi / 86400 / 5)
+        omega = 2 * math.pi / 86400 / 5
 
         calc_attr = TwoElement(therm_zone, merge_windows=True, t_bt=5)
 
-        helplist_outer_walls = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.ground_floors + therm_zone.windows
+        helplist_outer_walls = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.windows
+        )
 
         r1_ow, c1_ow = calc_attr._calc_parallel_connection(
-            element_list=helplist_outer_walls,
-            omega=omega)
+            element_list=helplist_outer_walls, omega=omega
+        )
         assert round(r1_ow, 14) == 0.00100751548411
         assert round(c1_ow, 5) == 3648580.59312
 
-        helplist_inner_walls = therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors
+        helplist_inner_walls = (
+            therm_zone.inner_walls + therm_zone.ceilings + therm_zone.floors
+        )
 
         r1_iw, c1_iw = calc_attr._calc_parallel_connection(
-            element_list=helplist_inner_walls,
-            omega=omega)
+            element_list=helplist_inner_walls, omega=omega
+        )
         assert round(r1_iw, 13) == 0.0097195611408
         assert round(c1_iw, 6) == 319983.518743
 
@@ -1302,16 +1373,21 @@ class Test_teaser(object):
         prj.set_default()
         helptest.building_test2(prj)
 
-        from teaser.logic.buildingobjects.calculation.three_element import\
-            ThreeElement
+        from teaser.logic.buildingobjects.calculation.three_element import ThreeElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = ThreeElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.ground_floors + therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
@@ -1375,38 +1451,45 @@ class Test_teaser(object):
 
     def test_calc_chain_matrix_three(self):
         """test of calc_chain_matrix"""
-        from teaser.logic.buildingobjects.calculation.three_element import \
-            ThreeElement
+        from teaser.logic.buildingobjects.calculation.three_element import ThreeElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = ThreeElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops + \
-            therm_zone.ground_floors + therm_zone.inner_walls + \
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
             element.calc_ua_value()
 
-        omega = (2 * math.pi / 86400 / 5)
+        omega = 2 * math.pi / 86400 / 5
 
-        helplist_outer_walls = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.windows
+        helplist_outer_walls = (
+            therm_zone.outer_walls + therm_zone.rooftops + therm_zone.windows
+        )
 
         r1_ow, c1_ow = calc_attr._calc_parallel_connection(
-            element_list=helplist_outer_walls,
-            omega=omega)
+            element_list=helplist_outer_walls, omega=omega
+        )
         assert round(r1_ow, 14) == 0.00175779297228
         assert round(c1_ow, 5) == 2091259.60825
 
-        helplist_inner_walls = therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors
+        helplist_inner_walls = (
+            therm_zone.inner_walls + therm_zone.ceilings + therm_zone.floors
+        )
 
         r1_iw, c1_iw = calc_attr._calc_parallel_connection(
-            element_list=helplist_inner_walls,
-            omega=omega)
+            element_list=helplist_inner_walls, omega=omega
+        )
         assert round(r1_iw, 13) == 0.0097195611408
         assert round(c1_iw, 6) == 319983.518743
 
@@ -1415,16 +1498,21 @@ class Test_teaser(object):
         prj.set_default()
         helptest.building_test2(prj)
 
-        from teaser.logic.buildingobjects.calculation.four_element import\
-            FourElement
+        from teaser.logic.buildingobjects.calculation.four_element import FourElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = FourElement(therm_zone, merge_windows=True, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops +\
-            therm_zone.ground_floors + therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
@@ -1505,37 +1593,43 @@ class Test_teaser(object):
 
     def test_calc_chain_matrix_four(self):
         """test of calc_chain_matrix"""
-        from teaser.logic.buildingobjects.calculation.four_element import \
-            FourElement
+        from teaser.logic.buildingobjects.calculation.four_element import FourElement
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
 
         calc_attr = FourElement(therm_zone, merge_windows=False, t_bt=5)
 
-        helplist = therm_zone.outer_walls + therm_zone.rooftops + \
-            therm_zone.ground_floors + therm_zone.inner_walls + \
-            therm_zone.ceilings + therm_zone.floors + therm_zone.windows
+        helplist = (
+            therm_zone.outer_walls
+            + therm_zone.rooftops
+            + therm_zone.ground_floors
+            + therm_zone.inner_walls
+            + therm_zone.ceilings
+            + therm_zone.floors
+            + therm_zone.windows
+        )
 
         for element in helplist:
             element.calc_equivalent_res()
             element.calc_ua_value()
 
-        omega = (2 * math.pi / 86400 / 5)
+        omega = 2 * math.pi / 86400 / 5
 
         helplist_outer_walls = therm_zone.outer_walls + therm_zone.windows
 
         r1_ow, c1_ow = calc_attr._calc_parallel_connection(
-            element_list=helplist_outer_walls,
-            omega=omega)
+            element_list=helplist_outer_walls, omega=omega
+        )
         assert round(r1_ow, 14) == 0.00688468914141
         assert round(c1_ow, 5) == 533938.62338
 
-        helplist_inner_walls = therm_zone.inner_walls +\
-            therm_zone.ceilings + therm_zone.floors
+        helplist_inner_walls = (
+            therm_zone.inner_walls + therm_zone.ceilings + therm_zone.floors
+        )
 
         r1_iw, c1_iw = calc_attr._calc_parallel_connection(
-            element_list=helplist_inner_walls,
-            omega=omega)
+            element_list=helplist_inner_walls, omega=omega
+        )
         assert round(r1_iw, 13) == 0.0097195611408
         assert round(c1_iw, 6) == 319983.518743
 
@@ -1543,9 +1637,9 @@ class Test_teaser(object):
         """test of calc_weightfactor"""
         prj.set_default()
         helptest.building_test2(prj)
-        prj.buildings[-1].calc_building_parameter(number_of_elements=1,
-                                                  merge_windows=True,
-                                                  used_library='IBPSA')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=1, merge_windows=True, used_library="IBPSA"
+        )
 
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
@@ -1555,13 +1649,13 @@ class Test_teaser(object):
             0.03434291025306576,
             0.024530650180761254,
             0.03434291025306576,
-            0.3407000330729792]
+            0.3407000330729792,
+        ]
 
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_ow == \
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
 
         weightfactors_test_list = [
             0.08674342795625017,
@@ -1569,21 +1663,20 @@ class Test_teaser(object):
             0.0,
             0.0,
             0.054214642472656345,
-            0.054214642472656345]
+            0.054214642472656345,
+        ]
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0.34638013315780397
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0.34638013315780397
 
         prj.buildings[-1].thermal_zones[-1].weightfactor_ow = []
         prj.buildings[-1].thermal_zones[-1].weightfactor_win = []
 
-        prj.buildings[-1].calc_building_parameter(number_of_elements=1,
-                                                  merge_windows=False,
-                                                  used_library='AixLib')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=1, merge_windows=False, used_library="AixLib"
+        )
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
         weightfactors_test_list = [
@@ -1592,12 +1685,12 @@ class Test_teaser(object):
             0.03047939672771178,
             0.0,
             0.04267115541879649,
-            0.04267115541879649]
+            0.04267115541879649,
+        ]
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_ow ==\
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
 
         weightfactors_test_list = [
             0.44444444444444453,
@@ -1605,22 +1698,21 @@ class Test_teaser(object):
             0.0,
             0.0,
             0.2777777777777778,
-            0.2777777777777778]
+            0.2777777777777778,
+        ]
 
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win.sort() ==\
-            weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_ground == \
-            0.4303782174267145
+        assert calc_attr.weightfactor_win.sort() == weightfactors_test_list.sort()
+        assert calc_attr.weightfactor_ground == 0.4303782174267145
 
     def test_calc_weightfactor_two(self):
         """test of calc_weightfactor"""
         prj.set_default()
         helptest.building_test2(prj)
-        prj.buildings[-1].calc_building_parameter(number_of_elements=2,
-                                                  merge_windows=True,
-                                                  used_library='IBPSA')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=2, merge_windows=True, used_library="IBPSA"
+        )
 
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
@@ -1630,32 +1722,31 @@ class Test_teaser(object):
             0.03434291025306576,
             0.024530650180761254,
             0.03434291025306576,
-            0.3407000330729792]
+            0.3407000330729792,
+        ]
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_ow == \
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
         weightfactors_test_list = [
             0.0,
             0.0,
             0.054214642472656345,
             0.08674342795625017,
             0.054214642472656345,
-            0.0]
+            0.0,
+        ]
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0.34638013315780397
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0.34638013315780397
 
         prj.buildings[-1].thermal_zones[-1].weightfactor_ow = []
         prj.buildings[-1].thermal_zones[-1].weightfactor_win = []
 
-        prj.buildings[-1].calc_building_parameter(number_of_elements=2,
-                                                  merge_windows=False,
-                                                  used_library='AixLib')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=2, merge_windows=False, used_library="AixLib"
+        )
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
         weightfactors_test_list = [
@@ -1664,11 +1755,11 @@ class Test_teaser(object):
             0.04267115541879649,
             0.03047939672771178,
             0.04267115541879649,
-            0.423320678280269]
+            0.423320678280269,
+        ]
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_ow ==\
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
 
         weightfactors_test_list = [
             0.0,
@@ -1676,22 +1767,21 @@ class Test_teaser(object):
             0.27777777777777778,
             0.44444444444444453,
             0.27777777777777778,
-            0.0]
+            0.0,
+        ]
 
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0.4303782174267145
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0.4303782174267145
 
     def test_calc_weightfactor_three(self):
         """test of calc_weightfactor"""
         prj.set_default()
         helptest.building_test2(prj)
-        prj.buildings[-1].calc_building_parameter(number_of_elements=3,
-                                                  merge_windows=True,
-                                                  used_library='IBPSA')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=3, merge_windows=True, used_library="IBPSA"
+        )
 
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
         weightfactors_test_list = [
@@ -1699,31 +1789,30 @@ class Test_teaser(object):
             0.5212510365068732,
             0.05254263524605685,
             0.03753045374718346,
-            0.05254263524605685]
+            0.05254263524605685,
+        ]
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_ow == \
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
         weightfactors_test_list = [
             0.13271234911406493,
             0.0,
             0.08294521819629057,
             0.0,
-            0.08294521819629057]
+            0.08294521819629057,
+        ]
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0
 
         prj.buildings[-1].thermal_zones[-1].weightfactor_ow = []
         prj.buildings[-1].thermal_zones[-1].weightfactor_win = []
 
-        prj.buildings[-1].calc_building_parameter(number_of_elements=3,
-                                                  merge_windows=False,
-                                                  used_library='AixLib')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=3, merge_windows=False, used_library="AixLib"
+        )
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
         weightfactors_test_list = [
@@ -1731,84 +1820,89 @@ class Test_teaser(object):
             0.7431609731775066,
             0.07491138282322722,
             0.05350813058801943,
-            0.07491138282322722]
+            0.07491138282322722,
+        ]
 
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_ow ==\
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
 
         weightfactors_test_list = [
             0.44444444444444453,
             0.0,
             0.2777777777777778,
             0.0,
-            0.2777777777777778]
+            0.2777777777777778,
+        ]
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0
 
     def test_calc_weightfactor_four(self):
         """test of calc_weightfactor"""
         prj.set_default()
         helptest.building_test2(prj)
-        prj.buildings[-1].calc_building_parameter(number_of_elements=4,
-                                                  merge_windows=True,
-                                                  used_library='IBPSA')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=4, merge_windows=True, used_library="IBPSA"
+        )
 
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
         weightfactors_test_list = [
-            0.07839276240589141, 0.10974986736824797, 0.07839276240589141,
-            0.10974986736824797]
+            0.07839276240589141,
+            0.10974986736824797,
+            0.07839276240589141,
+            0.10974986736824797,
+        ]
 
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
 
-        assert calc_attr.weightfactor_ow == \
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
         weightfactors_test_list = [
-            0.27720655131187616, 0.17325409456992255, 0.0, 0.17325409456992255]
+            0.27720655131187616,
+            0.17325409456992255,
+            0.0,
+            0.17325409456992255,
+        ]
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0
-        assert calc_attr.weightfactor_rt == \
-            [1]
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0
+        assert calc_attr.weightfactor_rt == [1]
 
         prj.buildings[-1].thermal_zones[-1].weightfactor_ow = []
         prj.buildings[-1].thermal_zones[-1].weightfactor_win = []
 
-        prj.buildings[-1].calc_building_parameter(number_of_elements=4,
-                                                  merge_windows=False,
-                                                  used_library='AixLib')
+        prj.buildings[-1].calc_building_parameter(
+            number_of_elements=4, merge_windows=False, used_library="AixLib"
+        )
         calc_attr = prj.buildings[-1].thermal_zones[-1].model_attr
 
         weightfactors_test_list = [
-            0.20833333333333331, 0.29166666666666663, 0.20833333333333331,
-            0.29166666666666663]
+            0.20833333333333331,
+            0.29166666666666663,
+            0.20833333333333331,
+            0.29166666666666663,
+        ]
         calc_attr.weightfactor_ow.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_ow ==\
-            weightfactors_test_list
+        assert calc_attr.weightfactor_ow == weightfactors_test_list
 
         weightfactors_test_list = [
-            0.44444444444444453, 0.2777777777777778, 0.0, 0.2777777777777778]
+            0.44444444444444453,
+            0.2777777777777778,
+            0.0,
+            0.2777777777777778,
+        ]
 
         calc_attr.weightfactor_win.sort()
         weightfactors_test_list.sort()
-        assert calc_attr.weightfactor_win ==\
-            weightfactors_test_list
-        assert calc_attr.weightfactor_ground == \
-            0
-        assert calc_attr.weightfactor_rt == \
-            [1]
+        assert calc_attr.weightfactor_win == weightfactors_test_list
+        assert calc_attr.weightfactor_ground == 0
+        assert calc_attr.weightfactor_rt == [1]
 
     def test_calc_one_element(self):
         """test of calc_two_element"""
@@ -1817,8 +1911,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=1,
-            merge_windows=True)
+            number_of_elements=1, merge_windows=True)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 328.0
@@ -1835,8 +1928,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=1,
-            merge_windows=False)
+            number_of_elements=1, merge_windows=False)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 328.0
@@ -1859,8 +1951,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=2,
-            merge_windows=True)
+            number_of_elements=2, merge_windows=True)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 328.0
@@ -1879,8 +1970,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=2,
-            merge_windows=False)
+            number_of_elements=2, merge_windows=False)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 328.0
@@ -1903,8 +1993,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=3,
-            merge_windows=True)
+            number_of_elements=3, merge_windows=True)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 188.0
@@ -1931,8 +2020,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=3,
-            merge_windows=False)
+            number_of_elements=3, merge_windows=False)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 188.0
@@ -1965,8 +2053,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=4,
-            merge_windows=True)
+            number_of_elements=4, merge_windows=True)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 48.0
@@ -2004,8 +2091,7 @@ class Test_teaser(object):
 
         therm_zone = prj.buildings[-1].thermal_zones[-1]
         therm_zone.calc_zone_parameters(
-            number_of_elements=4,
-            merge_windows=False)
+            number_of_elements=4, merge_windows=False)
 
         zone_attr = therm_zone.model_attr
         assert round(zone_attr.area_ow, 1) == 48.0
@@ -2066,19 +2152,19 @@ class Test_teaser(object):
         therm_zone.outer_walls[0].calc_ua_value()
 
         assert round(
-            therm_zone.outer_walls[0].ua_value,
-            15) == 4.132453174475393
+            therm_zone.outer_walls[0].ua_value, 15) == 4.132453174475393
 
     def test_gather_element_properties(self):
         """test of gather_element_properties"""
         outerWalls = prj.buildings[-1].thermal_zones[-1].outer_walls[0]
-        number_of_layer, density, thermal_conduc, heat_capac, thickness = \
+        number_of_layer, density, thermal_conduc, heat_capac, thickness = (
             outerWalls.gather_element_properties()
+        )
         assert number_of_layer == 2
-        assert (density == [5., 2.]).all()
-        assert (thermal_conduc == [4., 2.]).all()
+        assert (density == [5.0, 2.0]).all()
+        assert (thermal_conduc == [4.0, 2.0]).all()
         assert (heat_capac == [0.48, 0.84]).all()
-        assert (thickness == [5., 2.]).all()
+        assert (thickness == [5.0, 2.0]).all()
 
     def test_load_type_element(self):
         """test of load_type_element, no parameter checking"""
@@ -2088,17 +2174,16 @@ class Test_teaser(object):
         therm_zone.outer_walls[0].load_type_element(1988, "heavy", prj.data)
         therm_zone.inner_walls[0].load_type_element(1988, "light", prj.data)
         therm_zone.windows[0].load_type_element(
-            1988,
-            "Kunststofffenster, Isolierverglasung",
-            prj.data)
+            1988, "Kunststofffenster, Isolierverglasung", prj.data
+        )
 
     def test_save_type_element(self):
         """test of save_type_element, no parameter checking"""
         import os
+
         # test load function
         therm_zone = prj.buildings[-1].thermal_zones[-1]
-        path = os.path.join(
-            utilities.get_default_path(), 'unitTestTB.json')
+        path = os.path.join(utilities.get_default_path(), "unitTestTB.json")
         prj.data.path_tb = path
         prj.data.load_tb_binding()
         therm_zone.outer_walls[0].save_type_element(data_class=prj.data)
@@ -2108,10 +2193,10 @@ class Test_teaser(object):
     def test_delete_type_element(self):
         """test of save_type_element, no parameter checking"""
         import os
+
         # test load function
         therm_zone = prj.buildings[-1].thermal_zones[-1]
-        path = os.path.join(
-            utilities.get_default_path(), 'unitTestTB.json')
+        path = os.path.join(utilities.get_default_path(), "unitTestTB.json")
         prj.data.path_tb = path
         prj.data.load_tb_binding()
         therm_zone.outer_walls[0].delete_type_element(data_class=prj.data)
@@ -2189,16 +2274,12 @@ class Test_teaser(object):
         """test of load_material_template and save_material_template,
         no parameter checking"""
 
-        from teaser.logic.buildingobjects.buildingphysics.material import \
-            Material
+        from teaser.logic.buildingobjects.buildingphysics.material import Material
 
-        path = os.path.join(utilities.get_default_path(),
-                            'MatUT.json')
+        path = os.path.join(utilities.get_default_path(), "MatUT.json")
 
         mat = Material(parent=None)
-        mat.load_material_template(
-            mat_name='Tiledroof',
-            data_class=prj.data)
+        mat.load_material_template(mat_name="Tiledroof", data_class=prj.data)
 
         from teaser.data.dataclass import DataClass
 
@@ -2222,6 +2303,7 @@ class Test_teaser(object):
         from teaser.logic.buildingobjects.building import Building
         from teaser.logic.buildingobjects.thermalzone import ThermalZone
         from teaser.logic.buildingobjects.useconditions import UseConditions
+
         # warnings for not calculated buildings
         bld = Building(parent=prj)
         tz = ThermalZone(parent=bld)
@@ -2229,27 +2311,31 @@ class Test_teaser(object):
         prj.calc_all_buildings()
         prj.set_default(load_data=True)
         # warning if iwu and number_of_apartments is used
-        prj.add_residential(method='iwu',
-                            usage="single_family_dwelling",
-                            name="test",
-                            year_of_construction=1988,
-                            number_of_floors=1,
-                            height_of_floors=7,
-                            net_leased_area=1988,
-                            number_of_apartments=1)
+        prj.add_residential(
+            method="iwu",
+            usage="single_family_dwelling",
+            name="test",
+            year_of_construction=1988,
+            number_of_floors=1,
+            height_of_floors=7,
+            net_leased_area=1988,
+            number_of_apartments=1,
+        )
         # not all buildings if internal id is passed over
-        prj.add_residential(method='iwu',
-                            usage="single_family_dwelling",
-                            name="test1",
-                            year_of_construction=1988,
-                            number_of_floors=15,
-                            height_of_floors=6,
-                            net_leased_area=1988)
+        prj.add_residential(
+            method="iwu",
+            usage="single_family_dwelling",
+            name="test1",
+            year_of_construction=1988,
+            number_of_floors=15,
+            height_of_floors=6,
+            net_leased_area=1988,
+        )
         prj.calc_all_buildings()
         prj.export_aixlib(internal_id=prj.buildings[-1].internal_id)
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa(internal_id=prj.buildings[-1].internal_id)
 
@@ -2261,6 +2347,7 @@ class Test_teaser(object):
         """
 
         from teaser.logic.buildingobjects.building import Building
+
         prj.set_default(load_data=True)
 
         bldg = Building(parent=prj)
@@ -2286,64 +2373,66 @@ class Test_teaser(object):
 
         from teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
 
-        in_wall_dict = {"InnerWall1": [10.0],
-                        "InnerWall2": [14.0],
-                        "InnerWall3": [10.0]}
+        in_wall_dict = {
+            "InnerWall1": [10.0],
+            "InnerWall2": [14.0],
+            "InnerWall3": [10.0],
+        }
 
         for key, value in in_wall_dict.items():
 
             in_wall = InnerWall(parent=tz)
             in_wall.name = key
             in_wall.load_type_element(
-                year=bldg.year_of_construction,
-                construction='heavy')
+                year=bldg.year_of_construction, construction="heavy"
+            )
             in_wall.area = value[0]
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
@@ -2375,21 +2464,22 @@ class Test_teaser(object):
         tz.use_conditions = UseConditions(parent=tz)
         tz.use_conditions.load_use_conditions("Living", prj.data)
 
-        from teaser.logic.buildingobjects.buildingphysics.outerwall import \
-            OuterWall
+        from teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
 
-        out_wall_dict = {"OuterWall_north": [10.0, 90.0, 0.0],
-                         "OuterWall_east": [14.0, 90.0, 90.0],
-                         "OuterWall_south": [10.0, 90.0, 180.0],
-                         "OuterWall_west": [14.0, 90.0, 270.0]}
+        out_wall_dict = {
+            "OuterWall_north": [10.0, 90.0, 0.0],
+            "OuterWall_east": [14.0, 90.0, 90.0],
+            "OuterWall_south": [10.0, 90.0, 180.0],
+            "OuterWall_west": [14.0, 90.0, 270.0],
+        }
 
         for key, value in out_wall_dict.items():
             out_wall = OuterWall(parent=tz)
             out_wall.name = key
 
             out_wall.load_type_element(
-                year=bldg.year_of_construction,
-                construction='heavy')
+                year=bldg.year_of_construction, construction="heavy"
+            )
 
             out_wall.area = value[0]
             out_wall.tilt = value[1]
@@ -2397,73 +2487,73 @@ class Test_teaser(object):
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
@@ -2497,12 +2587,13 @@ class Test_teaser(object):
 
         from teaser.logic.buildingobjects.buildingphysics.window import Window
         from teaser.logic.buildingobjects.buildingphysics.layer import Layer
-        from teaser.logic.buildingobjects.buildingphysics.material import \
-            Material
+        from teaser.logic.buildingobjects.buildingphysics.material import Material
 
-        win_dict = {"Window_east": [5.0, 90.0, 90.0],
-                    "Window_south": [8.0, 90.0, 180.0],
-                    "Window_west": [5.0, 90.0, 270.0]}
+        win_dict = {
+            "Window_east": [5.0, 90.0, 90.0],
+            "Window_south": [8.0, 90.0, 180.0],
+            "Window_west": [5.0, 90.0, 270.0],
+        }
 
         for key, value in win_dict.items():
 
@@ -2532,73 +2623,73 @@ class Test_teaser(object):
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = True
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
@@ -2630,8 +2721,7 @@ class Test_teaser(object):
         tz.use_conditions = UseConditions(parent=tz)
         tz.use_conditions.load_use_conditions("Living", prj.data)
 
-        from teaser.logic.buildingobjects.buildingphysics.rooftop import \
-            Rooftop
+        from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
 
         roof_south = Rooftop(parent=tz)
         roof_south.name = "Roof_South"
@@ -2658,8 +2748,7 @@ class Test_teaser(object):
         layer_s1 = Layer(parent=roof_south, id=0)
         layer_s1.thickness = 0.3
 
-        from teaser.logic.buildingobjects.buildingphysics.material import \
-            Material
+        from teaser.logic.buildingobjects.buildingphysics.material import Material
 
         material_s1 = Material(layer_s1)
         material_s1.name = "Insulation"
@@ -2696,49 +2785,49 @@ class Test_teaser(object):
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
@@ -2770,8 +2859,7 @@ class Test_teaser(object):
         tz.use_conditions = UseConditions(parent=tz)
         tz.use_conditions.load_use_conditions("Living", prj.data)
 
-        from teaser.logic.buildingobjects.buildingphysics.groundfloor import \
-            GroundFloor
+        from teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
 
         ground_floor_dict = {"GroundFloor": [100.0, 0.0, -2]}
 
@@ -2780,64 +2868,65 @@ class Test_teaser(object):
             ground = GroundFloor(parent=tz)
             ground.name = key
             ground.load_type_element(
-                year=bldg.year_of_construction,
-                construction='heavy')
+                year=bldg.year_of_construction, construction="heavy"
+            )
             ground.area = value[0]
             ground.tilt = value[1]
             ground.orientation = value[2]
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'AixLib'
+        prj.used_library_calc = "AixLib"
         prj.calc_all_buildings()
         prj.export_aixlib()
 
         prj.number_of_elements_calc = 1
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 2
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 3
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
         prj.number_of_elements_calc = 4
         prj.merge_windows_calc = False
-        prj.used_library_calc = 'IBPSA'
+        prj.used_library_calc = "IBPSA"
         prj.calc_all_buildings()
         prj.export_ibpsa()
 
     def test_ashrae_140_600(self):
 
-        from teaser.examples.verification.verification_ASHRAE_140_600 import\
-            main as exmain
+        from teaser.examples.verification.verification_ASHRAE_140_600 import (
+            main as exmain,
+        )
 
         exmain(number_of_elements=1)
         exmain(number_of_elements=2)
@@ -2846,8 +2935,9 @@ class Test_teaser(object):
 
     def test_ashrae_140_620(self):
 
-        from teaser.examples.verification.verification_ASHRAE_140_620 import\
-            main as exmain
+        from teaser.examples.verification.verification_ASHRAE_140_620 import (
+            main as exmain,
+        )
 
         exmain(number_of_elements=1)
         exmain(number_of_elements=2)
@@ -2856,8 +2946,9 @@ class Test_teaser(object):
 
     def test_ashrae_140_900(self):
 
-        from teaser.examples.verification.verification_ASHRAE_140_900 import\
-            main as exmain
+        from teaser.examples.verification.verification_ASHRAE_140_900 import (
+            main as exmain,
+        )
 
         exmain(number_of_elements=1)
         exmain(number_of_elements=2)
@@ -2866,8 +2957,9 @@ class Test_teaser(object):
 
     def test_ashrae_140_920(self):
 
-        from teaser.examples.verification.verification_ASHRAE_140_920 import\
-            main as exmain
+        from teaser.examples.verification.verification_ASHRAE_140_920 import (
+            main as exmain,
+        )
 
         exmain(number_of_elements=1)
         exmain(number_of_elements=2)
@@ -2979,5 +3071,4 @@ class Test_teaser(object):
 
         prj_test.buildings[-1].central_ahu.profile_v_flow = v_flow_week
 
-        assert prj_test.buildings[
-            -1].central_ahu.profile_v_flow == v_flow_week
+        assert prj_test.buildings[-1].central_ahu.profile_v_flow == v_flow_week
