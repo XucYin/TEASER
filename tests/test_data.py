@@ -584,17 +584,17 @@ class Test_teaser(object):
     def test_load_save_project_new(self):
         """test of load_project and save_project"""
         prj.set_default(load_data=True)
-        prj.load_project(os.path.join(
-            utilities.get_default_path(), "unitTest.json"))
+        prj.load_project(utilities.get_full_path(
+            "examples/examplefiles/unitTest.json"))
         therm_zone = prj.buildings[-1].thermal_zones[0]
-        assert therm_zone.area == 318.08
+        assert therm_zone.area == 994.0
         tz_area = sum([tz.area for tz in prj.buildings[-1].thermal_zones])
         for tz in prj.buildings[-1].thermal_zones:
             print(tz.name, tz.area)
         print(prj.buildings[-1].name, prj.buildings[-1].net_leased_area)
         assert prj.buildings[-1].net_leased_area == tz_area
         assert prj.buildings[-1].net_leased_area == 1988.0
-        assert prj.buildings[-1].name == "TestBuilding_institute"
+        assert prj.buildings[-1].name == "TestBuilding"
         prj.name = "NewUnitTest"
         prj.save_project(file_name="unitTest_new.json", path=None)
 
